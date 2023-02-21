@@ -8,7 +8,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 import Cookies from "universal-cookie";
 let cookies = new Cookies();
 
-window.serverURL = `https://spoofmail-lambda.herokuapp.com`;
+window.serverURL = `https://spoofmail-us.herokuapp.com`;
 
 const isAuthed = _ => {
     let token = cookies.get("token");

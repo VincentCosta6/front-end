@@ -7,13 +7,13 @@ import { faTrashAlt} from "@fortawesome/free-solid-svg-icons";
 
 import { Parser } from "html-to-react";
 import Cookies from "universal-cookie";
+import { PinDropSharp } from '@material-ui/icons';
 
 let cookies = new Cookies();
 const htmlToReact = new Parser();
 
-const Email = ({ data, context }) => {
-
-    const deleteEmail = e => {
+const Email = ({ data, context, deleteEmail }) => {
+    const handleDeleteEmail = e => {
         e.stopPropagation();
         fetch(`${window.serverURL}/api/messages/${data.id}`, {
             headers: {
@@ -21,7 +21,7 @@ const Email = ({ data, context }) => {
             },
             method: "DELETE"
         }).then(res => res.json()).then(data => {
-            console.log(data);
+            deleteEmail(parseInt(data.id))
         })
     }
 
@@ -31,7 +31,7 @@ const Email = ({ data, context }) => {
                 <h3>From: <span>{data.from}</span></h3>
                 <h3>Subject: <span>{data.subject}</span></h3>
             </div>
-            <div onClick = {deleteEmail}>
+            <div onClick = {handleDeleteEmail}>
                 <FontAwesomeIcon icon = {faTrashAlt} style = {{ color: "red", cursor: "pointer" }}  />
             </div>
         </div>
@@ -57,12 +57,6 @@ const ViewEmail = ({ data }) => {
             </div>
     );
 }
-
-
-
-
-
-
 
 const clickEmail = (data, context) => {
     context.setEmailContent(data);

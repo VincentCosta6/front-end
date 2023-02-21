@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import useLocalStorage from "./useLocalStorage";
 
 export default _ => {
-    const [isDarkMode, setDarkMode] = useLocalStorage("isDarkMode", false);
+    const [isDarkMode, setDarkMode] = useLocalStorage("isDarkMode", true);
     
     useEffect(_ => {
         let list = document.body.classList;

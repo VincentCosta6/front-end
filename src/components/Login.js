@@ -53,7 +53,6 @@ const LoginComponent = props => {
         }
         else {
             res.json().then(data => {
-                console.log(data);
                 cookies.set("token", data.token);
                 history.push("/dashboard");
             })
